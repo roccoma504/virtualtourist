@@ -99,12 +99,12 @@
 		392209071C111219006786EB /* virtualtourist */ = {
 			isa = PBXGroup;
 			children = (
-				392209391C111338006786EB /* MapViewController.swift */,
+				392209171C111219006786EB /* Info.plist */,
 				392209081C111219006786EB /* AppDelegate.swift */,
-				3922090C1C111219006786EB /* Main.storyboard */,
+				392209391C111338006786EB /* MapViewController.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
-				392209171C111219006786EB /* Info.plist */,
+				3922090C1C111219006786EB /* Main.storyboard */,
 				3922090F1C111219006786EB /* virtualtourist.xcdatamodeld */,
 			);
 			path = virtualtourist;
