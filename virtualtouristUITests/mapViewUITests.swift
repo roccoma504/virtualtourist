@@ -1,6 +1,6 @@
 //
-//  virtualtouristUITests.swift
-//  virtualtouristUITests
+//  mapViewUITests.swift
+//  virtualtourist
 //
 //  Created by Matthew Rocco on 12/3/15.
 //  Copyright © 2015 Matthew Rocco. All rights reserved.
@@ -10,7 +10,7 @@ import XCTest
 @testable import virtualtourist
 
 
-class virtualtouristUITests: XCTestCase {
+class mapVIewUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -30,14 +30,5 @@ class virtualtouristUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        let app = XCUIApplication()
-        let map = app.maps.elementBoundByIndex(0)
-
-        XCTAssertEqual(map.enabled, true)
-
-    }
-    
     
 }
-
