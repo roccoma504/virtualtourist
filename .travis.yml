@@ -1,4 +1,4 @@
-language: objective-
+language: objective-c
 
 branches:
  only:
