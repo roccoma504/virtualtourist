@@ -1,4 +1,4 @@
-language: objective-c
+language: objective-
 
 branches:
  only:
@@ -7,6 +7,6 @@ branches:
 osx_image: xcode7.1
 xcode_sdk: iphonesimulator9.1 
 
-script: xcodebuild -sdk iphonesimulator9.1 build clean test -enableCodeCoverage YES -project onthemap.xcodeproj -scheme onthemapTests CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xcodebuild -sdk iphonesimulator9.1 build clean test -enableCodeCoverage YES -project virtualtourist.xcodeproj -scheme virtualtouristTests CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 after_success:
   - bash <(curl -s https://codecov.io/bash)
