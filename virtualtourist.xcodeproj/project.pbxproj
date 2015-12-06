@@ -13,9 +13,9 @@
 		392209131C111219006786EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392209121C111219006786EB /* Assets.xcassets */; };
 		392209161C111219006786EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392209141C111219006786EB /* LaunchScreen.storyboard */; };
 		3922093A1C111338006786EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392209391C111338006786EB /* MapViewController.swift */; };
-		396B63A51C111B4D00ED67FD /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A41C111B4D00ED67FD /* Region.swift */; };
 		396B63A71C1120AB00ED67FD /* mapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A61C1120AB00ED67FD /* mapViewTests.swift */; };
 		396B63A91C11214A00ED67FD /* mapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A81C11214A00ED67FD /* mapViewUITests.swift */; };
+		39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,9 +48,9 @@
 		392209271C111219006786EB /* virtualtouristUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = virtualtouristUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3922092D1C111219006786EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		392209391C111338006786EB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
-		396B63A41C111B4D00ED67FD /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		396B63A61C1120AB00ED67FD /* mapViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewTests.swift; sourceTree = "<group>"; };
 		396B63A81C11214A00ED67FD /* mapViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewUITests.swift; sourceTree = "<group>"; };
+		39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +103,8 @@
 			children = (
 				392209171C111219006786EB /* Info.plist */,
 				392209081C111219006786EB /* AppDelegate.swift */,
+				39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */,
 				392209391C111338006786EB /* MapViewController.swift */,
-				396B63A41C111B4D00ED67FD /* Region.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
 				3922090C1C111219006786EB /* Main.storyboard */,
@@ -268,7 +268,7 @@
 				392209111C111219006786EB /* virtualtourist.xcdatamodeld in Sources */,
 				3922093A1C111338006786EB /* MapViewController.swift in Sources */,
 				392209091C111219006786EB /* AppDelegate.swift in Sources */,
-				396B63A51C111B4D00ED67FD /* Region.swift in Sources */,
+				39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
