@@ -1,9 +1,10 @@
 //
 //  CoreDataStackManager.swift
-//  FavoriteActors
+//  VirtualTourist
 //
-//  Created by Jason on 3/10/15.
-//  Copyright (c) 2015 Udacity. All rights reserved.
+//  Created by Matthew Rocco on 12/3/15.
+//  Copyright © 2015 Matthew Rocco. All rights reserved.
+//  Adapted from Jason - Udacity
 //
 
 import Foundation
@@ -17,7 +18,7 @@ import CoreData
  *
  */
 
-private let SQLITE_FILE_NAME = "FavoriteActors.sqlite"
+private let SQLITE_FILE_NAME = "virtualtourist.sqlite"
 
 class CoreDataStackManager {
     
@@ -51,7 +52,7 @@ class CoreDataStackManager {
 
         print("Instantiating the managedObjectModel property")
         
-        let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("virtualtourist", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     
@@ -76,7 +77,7 @@ class CoreDataStackManager {
         let coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(SQLITE_FILE_NAME)
         
-        print("sqlite path: \(url.path!)")
+        //print("sqlite path: \(url.path!)")
         
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
