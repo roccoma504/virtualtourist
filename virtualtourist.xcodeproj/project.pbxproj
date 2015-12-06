@@ -16,6 +16,7 @@
 		396B63A71C1120AB00ED67FD /* mapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A61C1120AB00ED67FD /* mapViewTests.swift */; };
 		396B63A91C11214A00ED67FD /* mapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A81C11214A00ED67FD /* mapViewUITests.swift */; };
 		39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */; };
+		39B99A631C14B06300E61F8A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A621C14B06300E61F8A /* Pin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		396B63A61C1120AB00ED67FD /* mapViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewTests.swift; sourceTree = "<group>"; };
 		396B63A81C11214A00ED67FD /* mapViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewUITests.swift; sourceTree = "<group>"; };
 		39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		39B99A621C14B06300E61F8A /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				392209081C111219006786EB /* AppDelegate.swift */,
 				39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */,
 				392209391C111338006786EB /* MapViewController.swift */,
+				39B99A621C14B06300E61F8A /* Pin.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
 				3922090C1C111219006786EB /* Main.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B99A631C14B06300E61F8A /* Pin.swift in Sources */,
 				392209111C111219006786EB /* virtualtourist.xcdatamodeld in Sources */,
 				3922093A1C111338006786EB /* MapViewController.swift in Sources */,
 				392209091C111219006786EB /* AppDelegate.swift in Sources */,

@@ -22,50 +22,78 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         // Load and configure the mapview.
         loadMapConfig()
+        // Add a tap action to the view.
+        addTapAction(mapView: mapView, target:self, action: "addAnnotation:")
         
-        addOnUserTapAction(mapView: mapView, target:self, action: "addAnnotation:")
-
     }
     
     override func viewDidDisappear(animated: Bool) {
         setMapConfig()
     }
     
-    func addOnUserTapAction(mapView mapView: MKMapView, target: AnyObject, action: Selector, tapDuration: Double = 1){
-        
-        // Adding a colon at the end of the selector we pass the recognizer that triggered the action to the action
-        let longPressRecognizer = UILongPressGestureRecognizer(target: target, action: action)
-        longPressRecognizer.minimumPressDuration = tapDuration
-        
-        // Add gesture recognizer to the map
-        mapView.addGestureRecognizer(longPressRecognizer)
+    /**
+     Adds a gesture recognizer to the mapview.
+     
+     - Parameters:
+         - mapView: the mapview to add the action to
+         - target: the target for the tap (self)
+         - action: the action to be performed
+         - tapDuration: the length of the tap before activation
+     */
+    func addTapAction(mapView mapView: MKMapView,
+        target: AnyObject,
+        action: Selector,
+        tapDuration: Double = 1){
+            // Define the recongizer based on the input parameters and set the tap
+            // length to 1 second.
+            let longPressRecognizer = UILongPressGestureRecognizer(
+                target: target,
+                action: action)
+            longPressRecognizer.minimumPressDuration = tapDuration
+            
+            // Add gesture recognizer to the map.
+            mapView.addGestureRecognizer(longPressRecognizer)
     }
     
-    func getTappedLocation(mapView mapView: MKMapView, gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D{
-        
-        // Get the position on the screen where the user pressed, relative to the mapView
-        let touchPoint = gestureRecognizer.locationInView(mapView)
-        
-        // Get location coordinate in map
-        return mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
+    /**
+     Returns a location based on the tap.
+     
+     - Parameters:
+         - mapView: the mapview to add the action to
+         - gestureRecognizer: the gesture that the user performed
+     
+     - Returns: A 2d location
+     */
+    func getTappedLocation(mapView mapView: MKMapView,
+        gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D{
+            
+            // Get the position on the screen where the user pressed, relative to the mapView
+            let touchPoint = gestureRecognizer.locationInView(mapView)
+            
+            // Get location coordinate in map
+            return mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
     }
     
+    /**
+     Adds the annotation to the map
+     
+     - Parameters:
+     - gestureRecognizer: the gesture that the user performed
+     
+     */
     func addAnnotation(gestureRecognizer:UIGestureRecognizer){
-        print("add annotation")
         
         let location = getTappedLocation(mapView: mapView, gestureRecognizer: gestureRecognizer)
         
-        // Add an annotation
+        // Add an annotation to the map. We need to remove the gesture recognizer
+        // to prevent a bunch of pins from being created.
         let annotation = MKPointAnnotation()
         annotation.coordinate = location;
         annotation.title = "You created this annotation!"
         mapView.addAnnotation(annotation)
         mapView.removeGestureRecognizer(mapView.gestureRecognizers![0])
-        addOnUserTapAction(mapView: mapView, target:self, action: "addAnnotation:")
-
+        addTapAction(mapView: mapView, target:self, action: "addAnnotation:")
     }
-    
-
     
     /**
      Configure the mapview based on what is in defaults.
