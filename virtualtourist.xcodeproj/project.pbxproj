@@ -18,6 +18,7 @@
 		39B99A631C14B06300E61F8A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A621C14B06300E61F8A /* Pin.swift */; };
 		39B99A651C14C90D00E61F8A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A641C14C90D00E61F8A /* Photo.swift */; };
 		39B99A671C14D61C00E61F8A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A661C14D61C00E61F8A /* MapViewController.swift */; };
+		39B99A691C1512DD00E61F8A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A681C1512DD00E61F8A /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		39B99A621C14B06300E61F8A /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		39B99A641C14C90D00E61F8A /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		39B99A661C14D61C00E61F8A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		39B99A681C1512DD00E61F8A /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,14 +108,15 @@
 			isa = PBXGroup;
 			children = (
 				392209171C111219006786EB /* Info.plist */,
-				39B99A661C14D61C00E61F8A /* MapViewController.swift */,
 				392209081C111219006786EB /* AppDelegate.swift */,
 				39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */,
+				39B99A661C14D61C00E61F8A /* MapViewController.swift */,
 				39B99A641C14C90D00E61F8A /* Photo.swift */,
 				39B99A621C14B06300E61F8A /* Pin.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
 				3922090C1C111219006786EB /* Main.storyboard */,
+				39B99A681C1512DD00E61F8A /* AlbumViewController.swift */,
 				3922090F1C111219006786EB /* virtualtourist.xcdatamodeld */,
 			);
 			path = virtualtourist;
@@ -277,6 +280,7 @@
 				392209091C111219006786EB /* AppDelegate.swift in Sources */,
 				39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */,
 				39B99A671C14D61C00E61F8A /* MapViewController.swift in Sources */,
+				39B99A691C1512DD00E61F8A /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
