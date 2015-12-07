@@ -55,7 +55,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Controls the placement of pins on the map.
      - Parameters:
-     - add: if true, pins are added else they are removed
+         - add - if true, pins are added else they are removed
      */
     func processAnnotations(add : Bool) {
         for i in pins {
@@ -91,10 +91,10 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Adds a gesture recognizer to the mapview.
      - Parameters:
-     - mapView: the mapview to add the action to
-     - target: the target for the tap (self)
-     - action: the action to be performed
-     - tapDuration: the length of the tap before activation
+         - mapView - the mapview to add the action to
+         - target - the target for the tap (self)
+         - action - the action to be performed
+         - tapDuration - the length of the tap before activation
      */
     func addTapAction(mapView mapView: MKMapView,
         target: AnyObject,
@@ -113,9 +113,9 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Returns a location based on the tap.
      - Parameters:
-     - mapView: the mapview to add the action to
-     - gestureRecognizer: the gesture that the user performed
-     - Returns: A 2d location
+         - mapView - the mapview to add the action to
+         - gestureRecognizer - the gesture that the user performed
+         - Returns: A 2d location
      */
     func getTappedLocation(mapView mapView: MKMapView,
         gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D{
@@ -130,9 +130,9 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Configures the pin(s).
      - Parameters:
-     - mapView: the mapview to add the action to
-     - viewForAnnotation: the annotation view
-     - Returns: a custom pin.
+         - mapView - the mapview to add the action to
+         - viewForAnnotation - the annotation view
+         - Returns: a custom pin.
      */
     func mapView(mapView: MKMapView, viewForAnnotation : MKAnnotation) -> MKAnnotationView? {
         let pin = MKPinAnnotationView(annotation: viewForAnnotation, reuseIdentifier: "pin")
@@ -144,7 +144,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Adds the annotation to the map
      - Parameters:
-     - gestureRecognizer: the gesture that the user performed
+         - gestureRecognizer: the gesture that the user performed
      */
     func addAnnotation(gestureRecognizer:UIGestureRecognizer){
         
