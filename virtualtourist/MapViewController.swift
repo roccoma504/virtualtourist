@@ -16,6 +16,8 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     private var photos = [Photo]()
     private var pins = [Pin]()
     
+    private var clickedAnnotation : MKAnnotationView!
+    
     // Define all UI elements.
     @IBOutlet weak var mapView: MKMapView!
     
@@ -202,6 +204,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView: MKAnnotationView) {
+        clickedAnnotation = didSelectAnnotationView
         self.performSegueWithIdentifier("mapToPictures", sender: self)
     }
     
@@ -237,5 +240,9 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "mapToPictures") {
+        let collectVC:AlbumViewController = segue.destinationViewController as! AlbumViewController
+        collectVC.receivedPin = clickedAnnotation
+        }
     }
 }

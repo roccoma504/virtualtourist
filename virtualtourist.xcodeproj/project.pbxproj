@@ -108,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				392209171C111219006786EB /* Info.plist */,
+				39B99A681C1512DD00E61F8A /* AlbumViewController.swift */,
 				392209081C111219006786EB /* AppDelegate.swift */,
 				39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */,
 				39B99A661C14D61C00E61F8A /* MapViewController.swift */,
@@ -116,7 +117,6 @@
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
 				3922090C1C111219006786EB /* Main.storyboard */,
-				39B99A681C1512DD00E61F8A /* AlbumViewController.swift */,
 				3922090F1C111219006786EB /* virtualtourist.xcdatamodeld */,
 			);
 			path = virtualtourist;

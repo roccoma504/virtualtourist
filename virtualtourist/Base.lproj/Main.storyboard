@@ -52,10 +52,40 @@
                     <view key="view" contentMode="scaleToFill" id="e7R-Kh-lq2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zju-Qk-uON">
+                                <rect key="frame" x="0.0" y="64" width="600" height="133"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="ASi-YU-3Ua"/>
+                                </constraints>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o99-WJ-lh3">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MT0-Tl-wC5"/>
+                                    <barButtonItem title="New Collection" id="1tX-zl-swr"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="DfZ-A9-HEH"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o99-WJ-lh3" firstAttribute="trailing" secondItem="Zju-Qk-uON" secondAttribute="trailing" id="068-av-5uC"/>
+                            <constraint firstItem="o99-WJ-lh3" firstAttribute="bottom" secondItem="E9e-vh-oRu" secondAttribute="top" id="FSx-6y-ox7"/>
+                            <constraint firstItem="o99-WJ-lh3" firstAttribute="leading" secondItem="e7R-Kh-lq2" secondAttribute="leading" id="FWY-t3-0NH"/>
+                            <constraint firstItem="Zju-Qk-uON" firstAttribute="leading" secondItem="o99-WJ-lh3" secondAttribute="leading" id="KmZ-tc-yM8"/>
+                            <constraint firstItem="Zju-Qk-uON" firstAttribute="top" secondItem="t2C-vx-7vb" secondAttribute="bottom" id="Xjt-OX-s0f"/>
+                            <constraint firstAttribute="trailing" secondItem="o99-WJ-lh3" secondAttribute="trailing" id="mXe-RO-3ot"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Album" id="Lzc-kf-wFb"/>
+                    <connections>
+                        <outlet property="mapView" destination="Zju-Qk-uON" id="KIq-jL-dTM"/>
+                        <outlet property="newCollectionPress" destination="1tX-zl-swr" id="qK6-8f-ecY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcT-4f-yTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
