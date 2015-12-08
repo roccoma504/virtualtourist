@@ -32,7 +32,8 @@ class NetworkingOps {
             "format": "json",
             "nojsoncallback": "1",
             "lat": String(lat),
-            "lon": String(long)
+            "lon": String(long),
+            "page" : "1"
         ]
         
         let session = NSURLSession.sharedSession()
