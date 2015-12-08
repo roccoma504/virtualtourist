@@ -21,6 +21,7 @@
 		39B99A691C1512DD00E61F8A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A681C1512DD00E61F8A /* AlbumViewController.swift */; };
 		39B99A6B1C164C4300E61F8A /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A6A1C164C4300E61F8A /* APIKeys.swift */; };
 		39B99A6D1C164FE500E61F8A /* NetworkingOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */; };
+		39B99A6F1C16626D00E61F8A /* networkOpsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A6E1C16626D00E61F8A /* networkOpsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		39B99A681C1512DD00E61F8A /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		39B99A6A1C164C4300E61F8A /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingOps.swift; sourceTree = "<group>"; };
+		39B99A6E1C16626D00E61F8A /* networkOpsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = networkOpsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +93,10 @@
 		392208FC1C111219006786EB = {
 			isa = PBXGroup;
 			children = (
+				392209061C111219006786EB /* Products */,
 				392209071C111219006786EB /* virtualtourist */,
 				3922091F1C111219006786EB /* virtualtouristTests */,
 				3922092A1C111219006786EB /* virtualtouristUITests */,
-				392209061C111219006786EB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +135,7 @@
 			children = (
 				396B63A61C1120AB00ED67FD /* pinTests.swift */,
 				392209221C111219006786EB /* Info.plist */,
+				39B99A6E1C16626D00E61F8A /* networkOpsTests.swift */,
 			);
 			path = virtualtouristTests;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				396B63A71C1120AB00ED67FD /* pinTests.swift in Sources */,
+				39B99A6F1C16626D00E61F8A /* networkOpsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
