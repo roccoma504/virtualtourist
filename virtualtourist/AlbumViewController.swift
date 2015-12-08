@@ -21,6 +21,7 @@ class AlbumViewController : UIViewController, MKMapViewDelegate {
      Perform setup processing.
      - Set the mapview up
      - Drop the pin that was selected
+     - Retrieve Flickr photos
      */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,5 +35,11 @@ class AlbumViewController : UIViewController, MKMapViewDelegate {
         self.mapView.centerCoordinate = (receivedPin.annotation?.coordinate)!
         self.mapView.setRegion(region, animated: true)
         mapView.addAnnotation(receivedPin.annotation!)
+        
+        let networkingOps = NetworkingOps(
+            lat: (receivedPin.annotation?.coordinate.latitude)!,
+            long: (receivedPin.annotation?.coordinate.longitude)!)
+        
+networkingOps.getFlikrPhoto()
     }
 }

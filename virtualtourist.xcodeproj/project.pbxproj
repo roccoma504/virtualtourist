@@ -19,6 +19,8 @@
 		39B99A651C14C90D00E61F8A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A641C14C90D00E61F8A /* Photo.swift */; };
 		39B99A671C14D61C00E61F8A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A661C14D61C00E61F8A /* MapViewController.swift */; };
 		39B99A691C1512DD00E61F8A /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A681C1512DD00E61F8A /* AlbumViewController.swift */; };
+		39B99A6B1C164C4300E61F8A /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A6A1C164C4300E61F8A /* APIKeys.swift */; };
+		39B99A6D1C164FE500E61F8A /* NetworkingOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		39B99A641C14C90D00E61F8A /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		39B99A661C14D61C00E61F8A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39B99A681C1512DD00E61F8A /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		39B99A6A1C164C4300E61F8A /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingOps.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +113,11 @@
 			children = (
 				392209171C111219006786EB /* Info.plist */,
 				39B99A681C1512DD00E61F8A /* AlbumViewController.swift */,
+				39B99A6A1C164C4300E61F8A /* APIKeys.swift */,
 				392209081C111219006786EB /* AppDelegate.swift */,
 				39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */,
 				39B99A661C14D61C00E61F8A /* MapViewController.swift */,
+				39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */,
 				39B99A641C14C90D00E61F8A /* Photo.swift */,
 				39B99A621C14B06300E61F8A /* Pin.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
@@ -280,6 +286,8 @@
 				392209091C111219006786EB /* AppDelegate.swift in Sources */,
 				39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */,
 				39B99A671C14D61C00E61F8A /* MapViewController.swift in Sources */,
+				39B99A6D1C164FE500E61F8A /* NetworkingOps.swift in Sources */,
+				39B99A6B1C164C4300E61F8A /* APIKeys.swift in Sources */,
 				39B99A691C1512DD00E61F8A /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
