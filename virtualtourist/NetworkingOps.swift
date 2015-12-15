@@ -33,7 +33,8 @@ class NetworkingOps {
             "nojsoncallback": "1",
             "lat": String(lat),
             "lon": String(long),
-            "page" : "1"
+            "page" : "1",
+            "per_page" : "10"
         ]
         
         let session = NSURLSession.sharedSession()
@@ -50,27 +51,52 @@ class NetworkingOps {
             guard let statusCode = (
                 response as? NSHTTPURLResponse)?.statusCode where
                 statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
+                    if let response = response as? NSHTTPURLResponse {
+                        print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    } else if let response = response {
+                        print("Your request returned an invalid response! Response: \(response)!")
+                    } else {
+                        print("Your request returned an invalid response!")
+                    }
+                    return
             }
             guard let data = data else {
                 print("No data was returned by the request!")
                 return
             }
-            let parsedResult: AnyObject!
+            var json : Dictionary<String, AnyObject>
             do {
-                parsedResult = try NSJSONSerialization.JSONObjectWithData(
-                    data, options: .AllowFragments)
-                print(parsedResult)
+                json = try NSJSONSerialization.JSONObjectWithData(data,
+                    options: .AllowFragments) as! Dictionary<String, AnyObject>
+                
+                /* GUARD: Are the "photos" and "photo" keys in our result? */
+                guard let photosDictionary = json["photos"] as? NSDictionary,
+                    photoArray = photosDictionary["photo"] as? [[String: AnyObject]] else {
+                        print("Cannot find keys 'photos' and 'photo' in \(json)")
+                        return
+                }
+                
+                for i in 0...photoArray.count{
+                    let photoDictionary = photoArray[i] as [String: AnyObject]
+                    let photoTitle = photoDictionary["title"] as? String /* non-fatal */
+                    
+                    /* GUARD: Does our photo have a key for 'url_m'? */
+                    guard let imageUrlString = photoDictionary["url_m"] as? String else {
+                        print("Cannot find key 'url_m' in \(photoDictionary)")
+                        return
+                    }
+                    
+                    /* 8 - If an image exists at the url, set the image and title */
+                    let imageURL = NSURL(string: imageUrlString)
+                    if let imageData = NSData(contentsOfURL: imageURL!) {
+                        print(imageURL)
+                    } else {
+                        print("Image does not exist at \(imageURL)")
+                    }
+                }
                 print("parsed right")
             } catch {
-                parsedResult = nil
+                //json = nil
                 print("Could not parse the data as JSON: '\(data)'")
                 return
             }
@@ -78,13 +104,11 @@ class NetworkingOps {
         task.resume()
     }
     
-    
-    
     /** Helper function: Given a dictionary of parameters, convert to a string for a url
-    - Parameters:
-        - parameters: - the dictionary that needs to be escaped
-    - Returns: the escaped string
-    */
+     - Parameters:
+     - parameters: - the dictionary that needs to be escaped
+     - Returns: the escaped string
+     */
     func escapedParameters(parameters: [String : AnyObject]) -> String {
         var urlVars = [String]()
         for (key, value) in parameters {

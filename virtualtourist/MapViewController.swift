@@ -241,7 +241,8 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "mapToPictures") {
-        let collectVC:AlbumViewController = segue.destinationViewController as! AlbumViewController
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let collectVC:AlbumViewController = navigationController.viewControllers[0] as! AlbumViewController
         collectVC.receivedPin = clickedAnnotation
         }
     }
