@@ -13,16 +13,17 @@ import UIKit
 
 class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var newCollectionPress: UIBarButtonItem!
     @IBOutlet weak var collectionVIew: UICollectionView!
     
     private var detailMemeImage : UIImage!
+    private var photos = [Photo]()
+    
+    private var imageArray = [UIImage]()
     
     var receivedAnnotation : MKAnnotationView!
     var receivedPin : Pin!
-
-    private var photos = [Photo]()
+    
     
     /**
      Perform setup processing.
@@ -33,43 +34,102 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = self
         collectionVIew.delegate = self
         collectionVIew.dataSource = self
         
-        // Scope the mapview.
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.5 , 0.5)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(
-            (receivedAnnotation.annotation?.coordinate)!, span)
-        self.mapView.centerCoordinate = (receivedAnnotation.annotation?.coordinate)!
-        self.mapView.setRegion(region, animated: true)
-        mapView.addAnnotation(receivedAnnotation.annotation!)
+        setCollection()
+    }
+    
+    func setCollection() {
+        parsePhotoURL()
+        setImages()
+        
+    }
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    
+    func parsePhotoURL() {
         
         let networkingOps = NetworkingOps(
             lat: (receivedAnnotation.annotation?.coordinate.latitude)!,
             long: (receivedAnnotation.annotation?.coordinate.longitude)!)
         
-        networkingOps.getFlikrPhoto()
-        
-        // Define the dictionary.
-        let dictionary: [String : AnyObject] = [
-            Photo.Keys.url : "test"]
-        
-        // Create a new pin with the dictionary and add it to the array.
-        let newPhoto = Photo(dictionary: dictionary, context: sharedContext)
-        print(receivedPin)
-        newPhoto.pin = receivedPin
-        photos.append(newPhoto)
-        print(photos)
-        //newPhoto.pin = receivedPin
-        //photos.pin = pin
-        
-        // Save the new pin into core data.
-        CoreDataStackManager.sharedInstance().saveContext()
+        networkingOps.getFlikrPhoto { (result) -> Void in
+            
+            for i in 0...(networkingOps.urls().urls().count-1) {
+                
+                // Define the dictionary.
+                let dictionary: [String : AnyObject] = [
+                    Photo.Keys.url : networkingOps.urls().urls()[i]]
+                
+                self.photos = self.fetchPhotos()
+                
+                // Create a new pin with the dictionary and add it to the array.
+                let newPhoto = Photo(dictionary: dictionary, context: self.sharedContext)
+                newPhoto.pin = self.receivedPin
+                newPhoto.url = String(networkingOps.urls().urls()[i])
+                self.photos.append(newPhoto)
+            }
+            
+            print(self.photos)
+            print("printed photos")
+
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                
+                for i in 0...networkingOps.urls().urls().count {
+                    
+                    var photoOps = PhotoOps(image: UIImage())
+
+                    photoOps.downloadImage((NSURL(string: self.photos[i].url!)!)) { (result) -> Void in
+
+                        dispatch_async(dispatch_get_main_queue(),{
+
+                        self.imageArray.append(photoOps.photoImage())
+                        print("photo count")
+                        print(i)
+                        self.collectionVIew.reloadData()
+                        })
+                }}})
+            
+            // Save the new pin into core data.
+            CoreDataStackManager.sharedInstance().saveContext()
+            
+        }
     }
     
-    var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
+    func setImages () {
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            
+            print("in set image")
+            self.collectionVIew.reloadData()
+        })
+        
+    }
+    
+    /**
+     Fetch all of the pins from persistent storage.
+     - Returns: an array of pins. Can be empty if there is an error.
+     */
+    func fetchPhotos() -> [Photo] {
+        
+        // Create the request from the modal.
+        let fetchRequest = NSFetchRequest(entityName: "Photo")
+        
+        // Execute the fetch. If the fetch is successful post
+        // all of the pins on the map. Else log the error and
+        // present an alert to the user.
+        do {
+            let photos = try sharedContext.executeFetchRequest(fetchRequest) as! [Photo]
+            return photos
+        } catch  let error as NSError {
+            print("Error in fetchPins(): \(error)")
+            showAlert("There was an error retrieving data. Please reload.")
+            return [Photo]()
+        }
     }
     
     // Defines the number of sections in the collection.
@@ -86,8 +146,30 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PictureCollectionCell
         cell.backgroundColor = UIColor.blackColor()
-        //cell.flickrImage = UIImage(named: <#T##String#>)
+        
+        print("in cell config")
+        
+        
+        if photos.count > 0 {
+            
+            cell.flickrImage.image = imageArray[indexPath.row]
+            
+        }
         // Configure the cell
         return cell
+    }
+    
+    /** This subprogram generates an alert for the user based upon conditions
+     in the application. This view controller can generate two different
+     alerts so this is here only for reuseability.
+     */
+    func showAlert(message : String) {
+        dispatch_async(dispatch_get_main_queue(),{
+            let alertController = UIAlertController(title: "Error!", message:
+                message, preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss",
+                style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController,animated: true,completion: nil)
+        })
     }
 }

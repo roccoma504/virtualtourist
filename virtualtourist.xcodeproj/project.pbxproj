@@ -12,6 +12,8 @@
 		392209111C111219006786EB /* virtualtourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3922090F1C111219006786EB /* virtualtourist.xcdatamodeld */; };
 		392209131C111219006786EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392209121C111219006786EB /* Assets.xcassets */; };
 		392209161C111219006786EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392209141C111219006786EB /* LaunchScreen.storyboard */; };
+		393C29CC1C20EDD000027209 /* UrlArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C29CB1C20EDD000027209 /* UrlArray.swift */; };
+		393C29CE1C20F57600027209 /* PhotoOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C29CD1C20F57600027209 /* PhotoOps.swift */; };
 		396B63A71C1120AB00ED67FD /* pinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A61C1120AB00ED67FD /* pinTests.swift */; };
 		396B63A91C11214A00ED67FD /* mapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B63A81C11214A00ED67FD /* mapViewUITests.swift */; };
 		39B99A611C13AF5C00E61F8A /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */; };
@@ -54,6 +56,8 @@
 		392209221C111219006786EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		392209271C111219006786EB /* virtualtouristUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = virtualtouristUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3922092D1C111219006786EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		393C29CB1C20EDD000027209 /* UrlArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlArray.swift; sourceTree = "<group>"; };
+		393C29CD1C20F57600027209 /* PhotoOps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOps.swift; sourceTree = "<group>"; };
 		396B63A61C1120AB00ED67FD /* pinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pinTests.swift; sourceTree = "<group>"; };
 		396B63A81C11214A00ED67FD /* mapViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewUITests.swift; sourceTree = "<group>"; };
 		39B99A601C13AF5C00E61F8A /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
@@ -123,8 +127,10 @@
 				39B99A661C14D61C00E61F8A /* MapViewController.swift */,
 				39B99A6C1C164FE500E61F8A /* NetworkingOps.swift */,
 				39B99A641C14C90D00E61F8A /* Photo.swift */,
+				393C29CD1C20F57600027209 /* PhotoOps.swift */,
 				39B99A721C16679200E61F8A /* PictureCollectionCell.swift */,
 				39B99A621C14B06300E61F8A /* Pin.swift */,
+				393C29CB1C20EDD000027209 /* UrlArray.swift */,
 				392209121C111219006786EB /* Assets.xcassets */,
 				392209141C111219006786EB /* LaunchScreen.storyboard */,
 				3922090C1C111219006786EB /* Main.storyboard */,
@@ -286,6 +292,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				393C29CC1C20EDD000027209 /* UrlArray.swift in Sources */,
+				393C29CE1C20F57600027209 /* PhotoOps.swift in Sources */,
 				39B99A651C14C90D00E61F8A /* Photo.swift in Sources */,
 				39B99A631C14B06300E61F8A /* Pin.swift in Sources */,
 				392209111C111219006786EB /* virtualtourist.xcdatamodeld in Sources */,

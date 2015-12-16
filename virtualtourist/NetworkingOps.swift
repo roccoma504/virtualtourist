@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class NetworkingOps {
@@ -14,13 +15,16 @@ class NetworkingOps {
     var lat : Double
     var long : Double
     
+    private var urlArray = UrlArray()
+
+    
     init(lat : Double, long : Double){
         self.lat = lat
         self.long = long
     }
     
     
-    func getFlikrPhoto() {
+    func getFlikrPhoto(completion: (result: Bool) -> Void) {
         
         let BASE_URL = "https://api.flickr.com/services/rest/"
         
@@ -34,14 +38,14 @@ class NetworkingOps {
             "lat": String(lat),
             "lon": String(long),
             "page" : "1",
-            "per_page" : "10"
+            "per_page" : "2"
         ]
         
         let session = NSURLSession.sharedSession()
         let urlString = BASE_URL + escapedParameters(methodArguments)
         let url = NSURL(string: urlString)!
         let request = NSURLRequest(URL: url)
-        print(urlString)
+        //print(urlString)
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             guard (error == nil) else {
@@ -90,6 +94,7 @@ class NetworkingOps {
                     let imageURL = NSURL(string: imageUrlString)
                     if let imageData = NSData(contentsOfURL: imageURL!) {
                         print(imageURL)
+                        self.urlArray.appendUrl(imageURL!)
                     } else {
                         print("Image does not exist at \(imageURL)")
                     }
@@ -100,6 +105,8 @@ class NetworkingOps {
                 print("Could not parse the data as JSON: '\(data)'")
                 return
             }
+            completion(result: true)
+
         }
         task.resume()
     }
@@ -121,5 +128,11 @@ class NetworkingOps {
             urlVars += [key + "=" + "\(escapedValue!)"]
         }
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
+    }
+    
+
+    
+    func urls() -> UrlArray {
+        return urlArray
     }
 }

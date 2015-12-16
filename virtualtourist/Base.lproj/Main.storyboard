@@ -26,21 +26,21 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="4Lg-r6-gFb"/>
-                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="52K-2V-mwt"/>
-                            <constraint firstAttribute="trailing" secondItem="zUC-FP-Oa2" secondAttribute="trailing" id="RTI-gi-dcG"/>
-                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="eT4-HO-vq9"/>
+                            <constraint firstAttribute="trailing" secondItem="zUC-FP-Oa2" secondAttribute="trailing" id="PNA-6u-sny"/>
+                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="SrM-kx-6dc"/>
+                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bM1-WO-G7n"/>
+                            <constraint firstItem="zUC-FP-Oa2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wEh-el-6pV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="vYL-pJ-AtU"/>
                     <connections>
                         <outlet property="mapView" destination="zUC-FP-Oa2" id="gKc-gR-b35"/>
-                        <segue destination="9xw-mW-fmw" kind="show" identifier="mapToPictures" id="UsV-Wp-8eu"/>
+                        <segue destination="q1j-7i-mdj" kind="show" identifier="mapToPictures" id="MAY-JZ-hPB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="415"/>
+            <point key="canvasLocation" x="2026" y="783"/>
         </scene>
         <!--Album-->
         <scene sceneID="5zU-cq-s0n">
@@ -136,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcT-4f-yTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472" y="258"/>
+            <point key="canvasLocation" x="2749" y="445"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="Vph-nW-BUo">
@@ -161,7 +161,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EjA-me-MRP">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EjA-me-MRP">
                                             <rect key="frame" x="4" y="4" width="72" height="72"/>
                                             <animations/>
                                         </imageView>
@@ -171,6 +171,12 @@
                                 </view>
                                 <animations/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="EjA-me-MRP" firstAttribute="top" secondItem="z9g-wz-DSR" secondAttribute="topMargin" constant="-4" id="Hef-sh-5Uu"/>
+                                    <constraint firstItem="EjA-me-MRP" firstAttribute="centerX" secondItem="z9g-wz-DSR" secondAttribute="centerX" id="VCv-YD-yyZ"/>
+                                    <constraint firstItem="EjA-me-MRP" firstAttribute="leading" secondItem="z9g-wz-DSR" secondAttribute="leadingMargin" constant="-4" id="XWz-yG-rmJ"/>
+                                    <constraint firstItem="EjA-me-MRP" firstAttribute="centerY" secondItem="z9g-wz-DSR" secondAttribute="centerY" id="uY9-Q8-Xh5"/>
+                                </constraints>
                                 <size key="customSize" width="80" height="80"/>
                                 <connections>
                                     <outlet property="flickrImage" destination="EjA-me-MRP" id="5fd-hf-Ofm"/>
@@ -184,33 +190,14 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="fCm-v9-U83">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="aMT-53-Bkt">
-                            <rect key="frame" x="20" y="6" width="560" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sq9-JN-Wcq">
-                                    <rect key="frame" x="0.0" y="0.0" width="560" height="33"/>
-                                    <animations/>
-                                </mapView>
-                            </subviews>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="Sq9-JN-Wcq" secondAttribute="trailing" id="5BF-kd-FKB"/>
-                                <constraint firstAttribute="bottom" secondItem="Sq9-JN-Wcq" secondAttribute="bottom" id="GNz-Rv-VlZ"/>
-                                <constraint firstItem="Sq9-JN-Wcq" firstAttribute="leading" secondItem="aMT-53-Bkt" secondAttribute="leading" id="P7b-8W-2c0"/>
-                                <constraint firstItem="Sq9-JN-Wcq" firstAttribute="top" secondItem="aMT-53-Bkt" secondAttribute="top" id="c5f-t4-p5n"/>
-                            </constraints>
-                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionVIew" destination="I1K-Lr-gb9" id="wfQ-t0-44g"/>
-                        <outlet property="mapView" destination="Sq9-JN-Wcq" id="u9c-gb-Kmx"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pd3-mI-kLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3273" y="1007"/>
+            <point key="canvasLocation" x="2646" y="783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zAb-NH-x4p">
@@ -230,25 +217,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFS-FQ-ATl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="939" y="415"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MVh-3K-XAy">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9xw-mW-fmw" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QWi-fb-TSt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="q1j-7i-mdj" kind="relationship" relationship="rootViewController" id="N7O-8Z-LqK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FRK-3K-lKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2461" y="1007"/>
         </scene>
     </scenes>
 </document>
