@@ -13,11 +13,16 @@ import UIKit
 
 class MapViewController : UIViewController, MKMapViewDelegate {
     
-    private var photos = [Photo]()
     private var pins = [Pin]()
+    private var clickedPin = Pin()
+    private var clickedAnnotation : MKAnnotationView!
     
     // Define all UI elements.
     @IBOutlet weak var mapView: MKMapView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     /**
      Perform setup processing.
@@ -25,24 +30,41 @@ class MapViewController : UIViewController, MKMapViewDelegate {
      - Load the map configuration from user defaults
      - Add the tap recognizer
      - Set the global pin variable
+     - Remove the pins and then re-add them
      */
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
         mapView.delegate = self
-        loadMapConfig()
         addTapAction(mapView: mapView, target:self, action: "addAnnotation:")
+        loadMapConfig()
         pins = fetchPins()
+        processAnnotations(true)
     }
     
     /**
-     On disappear set the current state of the map into defaults.
+     On disappear set the current state of the map into defaults and remove
+     the pins.
      */
     override func viewDidDisappear(animated: Bool) {
+        processAnnotations(false)
         setMapConfig()
     }
     
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    
+    /**
+     Controls the placement of pins on the map.
+     - Parameters:
+     - add - if true, pins are added else they are removed
+     */
+    func processAnnotations(add : Bool) {
+        for i in pins {
+            i.coordinate.latitude = i.lat
+            i.coordinate.longitude = i.long
+            if add {mapView.addAnnotations([i]) }
+            else {mapView.removeAnnotations([i]) }
+        }
     }
     
     /**
@@ -59,11 +81,6 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         // present an alert to the user.
         do {
             let pins = try sharedContext.executeFetchRequest(fetchRequest) as! [Pin]
-            for i in pins {
-                i.coordinate.latitude = i.lat
-                i.coordinate.longitude = i.long
-                mapView.addAnnotations([i])
-            }
             return pins
         } catch  let error as NSError {
             print("Error in fetchPins(): \(error)")
@@ -75,15 +92,15 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Adds a gesture recognizer to the mapview.
      - Parameters:
-     - mapView: the mapview to add the action to
-     - target: the target for the tap (self)
-     - action: the action to be performed
-     - tapDuration: the length of the tap before activation
+     - mapView - the mapview to add the action to
+     - target - the target for the tap (self)
+     - action - the action to be performed
+     - tapDuration - the length of the tap before activation
      */
     func addTapAction(mapView mapView: MKMapView,
         target: AnyObject,
         action: Selector,
-        tapDuration: Double = 1) {
+        tapDuration: Double = 0.5) {
             // Define the recongizer based on the input parameters and set the tap
             // length to 1 second.
             let longPressRecognizer = UILongPressGestureRecognizer(
@@ -97,8 +114,8 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Returns a location based on the tap.
      - Parameters:
-     - mapView: the mapview to add the action to
-     - gestureRecognizer: the gesture that the user performed
+     - mapView - the mapview to add the action to
+     - gestureRecognizer - the gesture that the user performed
      - Returns: A 2d location
      */
     func getTappedLocation(mapView mapView: MKMapView,
@@ -114,8 +131,8 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     /**
      Configures the pin(s).
      - Parameters:
-     - mapView: the mapview to add the action to
-     - viewForAnnotation: the annotation view
+     - mapView - the mapview to add the action to
+     - viewForAnnotation - the annotation view
      - Returns: a custom pin.
      */
     func mapView(mapView: MKMapView, viewForAnnotation : MKAnnotation) -> MKAnnotationView? {
@@ -138,7 +155,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         // to prevent a bunch of pins from being created.
         let annotation = MKPointAnnotation()
         annotation.coordinate = location;
-        annotation.title = ""
+        annotation.title = "View Pictures"
         mapView.addAnnotation(annotation)
         mapView.removeGestureRecognizer(mapView.gestureRecognizers![0])
         addTapAction(mapView: mapView, target:self, action: "addAnnotation:")
@@ -147,7 +164,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         let dictionary: [String : AnyObject] = [
             Pin.Keys.lat : location.latitude,
             Pin.Keys.long : location.longitude,
-            Pin.Keys.title : ""]
+            Pin.Keys.title : "View Pictures"]
         
         // Create a new pin with the dictionary and add it to the array.
         let newPin = Pin(dictionary: dictionary, context: sharedContext)
@@ -155,7 +172,6 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         
         // Save the new pin into core data.
         CoreDataStackManager.sharedInstance().saveContext()
-        
     }
     
     /**
@@ -184,6 +200,11 @@ class MapViewController : UIViewController, MKMapViewDelegate {
             mapView.centerCoordinate = centerCoord
             mapView.setRegion(region, animated: true)
         }
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView: MKAnnotationView) {
+        clickedAnnotation = didSelectAnnotationView
+        self.performSegueWithIdentifier("mapToPictures", sender: self)
     }
     
     /**
@@ -215,5 +236,14 @@ class MapViewController : UIViewController, MKMapViewDelegate {
                 style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController,animated: true,completion: nil)
         })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "mapToPictures") {
+            let navigationController = segue.destinationViewController
+            let destView = navigationController as! AlbumViewController
+            destView.receivedAnnotation = clickedAnnotation
+            destView.receivedPin = pins[0]
+        }
     }
 }

@@ -24,6 +24,7 @@ class Pin : NSManagedObject, MKAnnotation {
      Contains all of the keys for the diectionary.
      - lat: latitude of the pin
      - long: longitude of the pin
+     - title: title of the pin
      */
     struct Keys {
         static var lat = "lat"
@@ -40,8 +41,8 @@ class Pin : NSManagedObject, MKAnnotation {
     /**
      Initializes the Pin object.
      - Parameters:
-     - dictionary: the input dictionary when creating the object
-     - context: the content for Core Dat
+         - dictionary: the input dictionary when creating the object
+         - context: the content for Core Dat
      */
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         

@@ -9,37 +9,41 @@
 import CoreData
 import MapKit
 
-class Photo : NSManagedObject, MKAnnotation {
+class Photo : NSManagedObject {
     
-    @NSManaged var coordinate: CLLocationCoordinate2D
-    @NSManaged var title: String?
+    @NSManaged var url: String?
     @NSManaged var pin: Pin?
+
     
-    struct defaults {
-        static let lat = "lat"
-        static let long = "long"
-        static let title = "title"
+    /**
+     Contains all of the keys for the diectionary.
+     - url: url of the image
+     */
+    struct Keys {
+        static var url = "url"
+    }
+
+    override init(
+        entity: NSEntityDescription, insertIntoManagedObjectContext
+        context: NSManagedObjectContext?) {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
-    }
-    
+    /**
+     Initializes the photo object.
+     - Parameters:
+     - dictionary: the input dictionary when creating the object
+     - context: the content for Core Dat
+     */
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         
-        // Core Data
+        // Define the entity from the model.
         let entity =  NSEntityDescription.entityForName("Photo", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        // Dictionary
-        title = dictionary[defaults.title] as? String
-        coordinate.latitude = dictionary[defaults.lat] as! Double
-        coordinate.longitude = dictionary[defaults.long] as! Double
+        // Assign the image url from the input dictionary.
+        url = dictionary[Keys.url] as? String
         
-    }
-    
-    func getPin() -> Photo {
-        return self
     }
     
 }
