@@ -75,26 +75,23 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
             
             print(self.photos)
             print("printed photos")
-
+            
             
             dispatch_async(dispatch_get_main_queue(),{
                 
-                for i in 0...networkingOps.urls().urls().count {
+                for i in 0...networkingOps.urls().urls().count - 1 {
                     
                     var photoOps = PhotoOps(image: UIImage())
-
-                    photoOps.downloadImage((NSURL(string: self.photos[i].url!)!)) { (result) -> Void in
-
+                    
+                    photoOps.downloadImage((NSURL(string: String(networkingOps.urls().urls()[i]))!)) { (result) -> Void in
+                        
                         dispatch_async(dispatch_get_main_queue(),{
-
-                        self.imageArray.append(photoOps.photoImage())
-                        print("photo count")
-                        print(i)
-                        self.collectionVIew.reloadData()
-                        })
-                }}})
+                            
+                            self.imageArray.append(photoOps.photoImage())
+                            self.collectionVIew.reloadData()
+                        })}}})
             
-            // Save the new pin into core data.
+            // Save the new photos into core data.
             CoreDataStackManager.sharedInstance().saveContext()
             
         }
@@ -140,21 +137,15 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
     // Defines the number of cells in the section, this scales depending on
     // the number of memes.
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return imageArray.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PictureCollectionCell
         cell.backgroundColor = UIColor.blackColor()
         
-        print("in cell config")
+        cell.flickrImage.image = imageArray[indexPath.row]
         
-        
-        if photos.count > 0 {
-            
-            cell.flickrImage.image = imageArray[indexPath.row]
-            
-        }
         // Configure the cell
         return cell
     }

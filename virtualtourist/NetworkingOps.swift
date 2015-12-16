@@ -38,7 +38,7 @@ class NetworkingOps {
             "lat": String(lat),
             "lon": String(long),
             "page" : "1",
-            "per_page" : "2"
+            "per_page" : "5"
         ]
         
         let session = NSURLSession.sharedSession()
