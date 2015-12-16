@@ -6,6 +6,7 @@
 //  Copyright © 2015 Matthew Rocco. All rights reserved.
 //
 
+import CoreData
 import Foundation
 import MapKit
 import UIKit
@@ -18,10 +19,10 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
     
     private var detailMemeImage : UIImage!
     
-    var receivedPin : MKAnnotationView!
-    
-    // Defines an array of meme objects that is retrieved from the table view.
-    var receivedMemeArray : Array <Photo> = []
+    var receivedAnnotation : MKAnnotationView!
+    var receivedPin : Pin!
+
+    private var photos = [Photo]()
     
     /**
      Perform setup processing.
@@ -39,16 +40,36 @@ class AlbumViewController : UICollectionViewController, MKMapViewDelegate {
         // Scope the mapview.
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.5 , 0.5)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(
-            (receivedPin.annotation?.coordinate)!, span)
-        self.mapView.centerCoordinate = (receivedPin.annotation?.coordinate)!
+            (receivedAnnotation.annotation?.coordinate)!, span)
+        self.mapView.centerCoordinate = (receivedAnnotation.annotation?.coordinate)!
         self.mapView.setRegion(region, animated: true)
-        mapView.addAnnotation(receivedPin.annotation!)
+        mapView.addAnnotation(receivedAnnotation.annotation!)
         
         let networkingOps = NetworkingOps(
-            lat: (receivedPin.annotation?.coordinate.latitude)!,
-            long: (receivedPin.annotation?.coordinate.longitude)!)
+            lat: (receivedAnnotation.annotation?.coordinate.latitude)!,
+            long: (receivedAnnotation.annotation?.coordinate.longitude)!)
         
         networkingOps.getFlikrPhoto()
+        
+        // Define the dictionary.
+        let dictionary: [String : AnyObject] = [
+            Photo.Keys.url : "test"]
+        
+        // Create a new pin with the dictionary and add it to the array.
+        let newPhoto = Photo(dictionary: dictionary, context: sharedContext)
+        print(receivedPin)
+        newPhoto.pin = receivedPin
+        photos.append(newPhoto)
+        print(photos)
+        //newPhoto.pin = receivedPin
+        //photos.pin = pin
+        
+        // Save the new pin into core data.
+        CoreDataStackManager.sharedInstance().saveContext()
+    }
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     
     // Defines the number of sections in the collection.

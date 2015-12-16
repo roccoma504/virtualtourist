@@ -76,7 +76,7 @@ class NetworkingOps {
                         return
                 }
                 
-                for i in 0...photoArray.count{
+                for i in 0...(photoArray.count - 1) {
                     let photoDictionary = photoArray[i] as [String: AnyObject]
                     let photoTitle = photoDictionary["title"] as? String /* non-fatal */
                     
